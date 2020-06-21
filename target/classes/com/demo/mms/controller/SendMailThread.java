@@ -38,12 +38,12 @@ public class SendMailThread extends Thread {
         // 表示SMTP发送邮件，需要进行身份验证
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.host", "smtp.qq.com");
-        props.put("mail.smtp.port", "25");
+        props.put("mail.smtp.port", "465");
         props.put("mail.smtp.ssl.enable", "true");
         //smtp登陆的账号、密码 ；需开启smtp登陆
-        props.put("mail.user", "1687631602@qq.com");
+        props.put("mail.user", "971414588@qq.com");
         // 访问SMTP服务时需要提供的密码,不是邮箱登陆密码，一般都有独立smtp的登陆密码
-        props.put("mail.password", "mtekldxpmkxmdbhi");
+        props.put("mail.password", "fdglvdeeonyjbfca");
 
 
         // 构建授权信息，用于进行SMTP进行身份验证
@@ -98,7 +98,7 @@ public class SendMailThread extends Thread {
 
     public static void main(String[] args) {
         String text="<a href=\"http://localhost:8080/pages/mypages/modifyPw.html\" rel=\"noopener\" target=\"_blank\">view it on GitHub</a>";
-        SendMailThread temp=new SendMailThread("1186405973@qq.com", "重置密码2", text);
+        SendMailThread temp=new SendMailThread("1206466033@qq.com", "123", text);
         System.out.println("AA");
         temp.run();
         System.out.printf("BB");
