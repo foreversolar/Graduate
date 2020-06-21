@@ -49,15 +49,15 @@
     delete from openreport
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.demo.mms.common.domain.OpenReport">
-    insert into openreport (id, course_id, course_meaning, 
+  <insert id="insert" parameterType="com.demo.mms.common.domain.OpenReport" useGeneratedKeys="true" keyProperty="id">
+    insert into openreport (course_id, course_meaning,
       current_overview, research_content, research_mind, 
       research_schedule, reference, meeting_time, 
       meeting_place, meeting_host, teacher1_id, 
       teacher2_id, teacher3_id, meeting_summary, 
       advice, version, state, 
       submit_time)
-    values (#{id,jdbcType=INTEGER}, #{course_id,jdbcType=INTEGER}, #{course_meaning,jdbcType=VARCHAR},
+    values (#{course_id,jdbcType=INTEGER}, #{course_meaning,jdbcType=VARCHAR},
       #{current_overview,jdbcType=VARCHAR}, #{research_content,jdbcType=VARCHAR}, #{research_mind,jdbcType=VARCHAR},
       #{research_schedule,jdbcType=VARCHAR}, #{reference,jdbcType=VARCHAR}, #{meeting_time,jdbcType=TIMESTAMP},
       #{meeting_place,jdbcType=VARCHAR}, #{meeting_host,jdbcType=VARCHAR}, #{teacher1_id,jdbcType=INTEGER},

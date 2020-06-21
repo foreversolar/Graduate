@@ -80,10 +80,10 @@ public class LiteratureReviewController {
                 }
                 String newFilename= UUID.randomUUID()+originalFilename.substring(originalFilename.lastIndexOf("."));;
                 String finalpath= dirPath+newFilename;
-                String dbpath="/storage\\"+course_id+"\\"+newFilename;
+                String dbpath="\\storage\\"+course_id+"\\"+newFilename;
                 try {
                     //使用MultipartFile接口的方法完成文件上传到指定位置
-                    item.transferTo(new File(finalpath));
+                    item.transferTo(new File(dbpath));
                     literatureReviewService.addliteratureReviewpath(dbpath,Integer.toString(course_id),Integer.toString(version),originalFilename);
                     System.out.println(dbpath+" "+Integer.toString(course_id)+" "+Integer.toString(version)+" "+originalFilename);
                     //文件上传成功后，需要将文件存放路径存入数据库中

@@ -54,7 +54,7 @@ public class OpenReportController {
             for (MultipartFile item : items) {
                 //获取上传文件的原始名称
                 String originalFilename = item.getOriginalFilename();
-                String dirPath = savePath + "\\" + course_id + "\\";
+                String dirPath = savePath + "/" + course_id + "/";
                 //设置上传文件的保存地址目录
                 File file = new File(dirPath);
                 //如果保存文件的地址不存在，就先创建目录
@@ -62,9 +62,8 @@ public class OpenReportController {
                     file.mkdirs();
                 }
                 String newFilename = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
-                ;
                 String finalpath = dirPath + newFilename;
-                String dbpath = "/storage\\" + course_id + "\\" + newFilename;
+                String dbpath = "/storage/" + course_id + "/" + newFilename;
                 try {
                     //使用MultipartFile接口的方法完成文件上传到指定位置
                     item.transferTo(new File(finalpath));

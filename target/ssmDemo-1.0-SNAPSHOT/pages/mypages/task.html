@@ -462,25 +462,27 @@
     });
     //保存提交
     $("#save").on("click", function () {
-        commitPages(sid, "SAVE");
+        commitPages(sid, "SAVE",cid);
         toastr.success("保存成功", "消息提示");
     });
 
     $("#submit").on("click", function () {
-        commitPages(sid, "SUBMIT");
+        commitPages(sid, "SUBMIT",cid);
         toastr.success("提交成功", "消息提示");
-    });
+    });xs
 
-    function commitPages(sid, sta) {/********************/
+    function commitPages(sid, sta,cid) {/********************/
         var tc = $("#sfsj0")[0].checked ? 0 : 1;
         var page = {
-            studentid: sid, /********************/
+            id: sid, /********************/
+            course_id:cid,
+            experimental:tc,
+            workingtask: $('#goal').summernote('code'),
+            collection: $('#refer').summernote('code'),
+            plan: $('#schedule').summernote('code'),
+            version:1,
             state: sta,
-            commit_time: new Date(),
-            exercise: tc,
-            goal: $('#goal').summernote('code'),
-            refer: $('#refer').summernote('code'),
-            schedule: $('#schedule').summernote('code'),
+            submit_time: new Date(),
         };
 
         axios.post('http://localhost:8080/addTask', page)

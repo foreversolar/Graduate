@@ -426,13 +426,73 @@
             showMethod: "fadeIn",
             hideMethod: "fadeOut"
         };
-    })
+    });
+
+
+    $(document).ready(function () {
+        $("#original_file").fileinput({
+            language: 'zh',
+            theme: 'explorer-fas',
+            uploadUrl: 'http://localhost:8080/saveOpenReport',
+            overwriteInitial: false,
+            initialPreviewAsData: true,
+            showPreview: true,//是否显示预览
+            initialPreview: [],
+            showUpload: false,
+            enctype: "multipart/form-data",
+            uploadExtraData: function (previewId, index) {
+                return {
+                    "course_id": 0,
+                    "type":"origin",
+                };
+            },
+            initialPreviewConfig: []
+        }).on('filepreupload', function (event, data, previewId, index) {     //上传中
+            var form = data.form, files = data.files, extra = data.extra,
+                response = data.response, reader = data.reader;
+            console.log('文件正在上传');
+        }).on("fileuploaded", function (event, data, previewId, index) {    //一个文件上传成功
+            console.log('文件上传成功！' + data.id);
+
+        }).on('fileerror', function (event, data, msg) {  //一个文件上传失败
+            console.log('文件上传失败！' + data.id);
+        });
+    });
+
 </script>
+
 <script type="text/javascript">
     //页面初始化
     var cid = 0;
     var sid = 0;
     var role = 0;
+
+    $(document).ready(function () {
+        $("#translated_file").fileinput({
+            language: 'zh',
+            theme: 'explorer-fas',
+            uploadUrl: 'http://localhost:8080/saveTranslation',
+            overwriteInitial: false,
+            initialPreviewAsData: true,
+            showPreview: true,//是否显示预览
+            showUpload: false,
+            enctype: "multipart/form-data",
+            uploadExtraData: {
+                course_id:cid,
+                type:"translated"
+            }
+        }).on('filepreupload', function (event, data, previewId, index) {     //上传中
+            var form = data.form, files = data.files, extra = data.extra,
+                response = data.response, reader = data.reader;
+            console.log('文件正在上传');
+        }).on("fileuploaded", function (event, data, previewId, index) {    //一个文件上传成功
+            console.log('文件上传成功！' + data.id);
+
+        }).on('fileerror', function (event, data, msg) {  //一个文件上传失败
+            console.log('文件上传失败！' + data.id);
+        });
+    });
+
     $(function () {
         $.ajax({
             url: "http://localhost:8080/getUser",
@@ -449,36 +509,6 @@
                     success: function (data) {
                         $("#user_name").html(data.success.student);
                         $("#depart_name").html(data.success.stuMajor);
-
-                        $("#original_file").fileinput({
-                            language: 'zh',
-                            theme: 'explorer-fas',
-                            uploadUrl: 'http://localhost:8080/saveTranslation',
-                            overwriteInitial: false,
-                            initialPreviewAsData: true,
-                            showPreview: true,//是否显示预览
-                            showUpload: false,
-                            enctype: "multipart/form-data",
-                            uploadExtraData: {
-                                course_id:cid,
-                                type:"origin"
-                            }
-                        });
-                        $("#translated_file").fileinput({
-                            language: 'zh',
-                            theme: 'explorer-fas',
-                            uploadUrl: 'http://localhost:8080/saveTranslation',
-                            overwriteInitial: false,
-                            initialPreviewAsData: true,
-                            showPreview: true,//是否显示预览
-                            showUpload: false,
-                            enctype: "multipart/form-data",
-                            uploadExtraData: {
-                                course_id:cid,
-                                type:"translated"
-                            }
-                        });
-
                     }
                 });
 
