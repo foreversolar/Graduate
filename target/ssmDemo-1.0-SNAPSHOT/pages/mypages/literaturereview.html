@@ -387,7 +387,7 @@
                     url: "http://localhost:8080/returnLiterature",
                     data: {course_id: cid},
                     success: function (msg) {
-                        initReport(msg.success)
+                        initReport(msg)
                     }
                 });
 
@@ -430,13 +430,14 @@
 
     function initReport(page) {
         //处理报告状态
-        if (page.state !== "SAVE" && page.state !== "") {
+        console.log(page);
+        if (page.state === "SUBMIT") {
             $("#summernote").summernote("disable");
             $("#submit").hide();
             $("#save").hide();
         }
 
-        if(midreport.result!=null){
+        if(page.result!=null){
             $("#advice").attr("disabled",true);
             $("#result").attr("disabled",true);
             $("#submitt").hide();
@@ -473,7 +474,7 @@
             url: "http://localhost:8080/getLiteratureReview",
             data: {course_id: cid},
             success: function (msg) {
-                initReport(msg.success)
+                initReport(msg)
             }
         });
 

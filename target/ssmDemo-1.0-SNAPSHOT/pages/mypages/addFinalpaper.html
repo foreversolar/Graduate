@@ -247,36 +247,9 @@
                     <tbody>
                     <tr>
                         <td>
-                            <div class="WZN-lrtable-l">【文件名】：</div>
-                            <div class="WZN-lrtable-r">
-                                <input style="margin-bottom: 10px" id="papername" type="text" class="form-control ">
-                                <div class="wuyu">
-                                    <div class="file-loading" id="kewu1">
-                                        <input id="paperfile" type="file" multiple name="items">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="WZN-lrtable-r " style="display: none" id="file_download">
-                                <div id="file_name"> 2015毕设_2015141463170_王启帆_条件生成对抗网络在少数类有效数据生成中的研究与应用_段磊</div>
-
-                                <div id="filename">
-                                    <a id="file_path" class="listA margl"
-                                       href=""
-                                       download="2015毕设_2015141463170_王启帆_条件生成对抗网络在少数类有效数据生成中的研究与应用_段磊 ">点击下载原文</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <div class="WZN-lrtable-l">【检测结果】：</div>
                             <div class="WZN-lrtable-r">
                                 <input style="margin-bottom: 10px" id="result" type="text" class="form-control ">
-                                <div class="wuyu">
-                                <div class="file-loading" id="kewu2">
-                                    <input id="resultfile" type="file" multiple name="items">
-                                </div>
-                                </div>
                             </div>
                             <div class="WZN-lrtable-r" id='result_download' style="display: none">
                                 <div id="result_name"> 2015毕设_2015141463170_王启帆_条件生成对抗网络在少数类有效数据生成中的研究与应用_段磊</div>
@@ -425,62 +398,6 @@
                         console.log(data.success.stu_major);
                         $("#user_name").html(data.success.student);
                         $("#depart_name").html(data.success.stuMajor);
-                        //添加文件上传时候的参数，三处用到
-                        $("#paperfile").fileinput({
-                            language: 'zh',
-                            theme: 'explorer-fas',
-                            uploadUrl: 'http://localhost:8080/saveFinalReport',
-                            overwriteInitial: false,
-                            initialPreviewAsData: true,
-                            showPreview: true,//是否显示预览
-                            initialPreview: [],
-                            showUpload: false,
-                            enctype: "multipart/form-data",
-                            uploadExtraData: function () {
-                                var data = {
-                                    studentid: sid,
-                                    type: "paper"
-                                };
-                                return data;
-                            },
-                        })
-                        $("#resultfile").fileinput({
-                            language: 'zh',
-                            theme: 'explorer-fas',
-                            uploadUrl: 'http://localhost:8080/saveFinalReport',
-                            overwriteInitial: false,
-                            initialPreviewAsData: true,
-                            showPreview: true,//是否显示预览
-                            initialPreview: [],
-                            showUpload: false,
-                            enctype: "multipart/form-data",
-                            uploadExtraData: function () {
-                                var data = {
-                                    studentid: sid,
-                                    type: "result"
-                                };
-                                return data;
-                            },
-                        })
-                        $("#otherfile").fileinput({
-                            language: 'zh',
-                            theme: 'explorer-fas',
-                            uploadUrl: 'http://localhost:8080/saveFinalReport',
-                            overwriteInitial: false,
-                            initialPreviewAsData: true,
-                            showPreview: true,//是否显示预览
-                            initialPreview: [],
-                            showUpload: false,
-                            enctype: "multipart/form-data",
-                            uploadExtraData: function () {
-                                var data = {
-                                    studentid: sid,
-                                    type: "other"
-                                };
-                                return data;
-                            },
-                            initialPreviewConfig: []
-                        })
                     }
                 });
 
@@ -643,7 +560,6 @@
             studentid: sid,
             state: sta,
             commit_time: new Date(),
-            reportname: $("#papername")[0].value,
             keywoord: $("#keys")[0].value,
             innovation_point: $("#points")[0].value,
             chinese_abstract: $("#summary")[0].value,

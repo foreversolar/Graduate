@@ -62,14 +62,14 @@ public class FinalReportController {
             for (MultipartFile item : items) {
                 //获取上传文件的原始名称
                 String originalFilename = item.getOriginalFilename();
-                String dirPath=savePath+"\\"+studentid+"\\";
+                String dirPath=savePath+"/"+studentid+"/";
                 File file =new File(dirPath);
                 if(!file.exists()){
                     file.mkdirs();
                 }
                 String newFilename= UUID.randomUUID()+originalFilename.substring(originalFilename.lastIndexOf("."));;
                 String finalpath= dirPath+newFilename;
-                String dbpath="/storage\\"+studentid+"\\"+newFilename;
+                String dbpath="/storage/"+studentid+"/"+newFilename;
                 try {
                     //使用MultipartFile接口的方法完成文件上传到指定位置
                     item.transferTo(new File(finalpath));
